@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportar Contenido - CineTox</title>
+    <link rel="stylesheet" href="styles.css">
+<link type="text/css" rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+    <div class="container">
+        <h1>Reportar Contenido - CineTox</h1>
+        <form id="report-form" onsubmit="sendReport(event)">
+            <div class="form-group">
+                <label for="content-type">Tipo de Contenido</label>
+                <select id="content-type" name="content-type" onchange="toggleSeasonOptions()" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="pelicula">Película</option>
+                    <option value="serie">Serie</option>
+                </select>
+            </div>
+            
+            <div id="season-select" class="form-group" style="display:none;">
+                <label for="season">Temporada</label>
+                <select id="season" name="season">
+                    <option value="">Selecciona una temporada</option>
+                    <!-- Opciones de temporada de 1 a 22 -->
+                    <script>
+                        for (var i = 1; i <= 22; i++) {
+                            document.write('<option value="' + i + '">Temporada ' + i + '</option>');
+                        }
+                    </script>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="reason">Motivo del Reporte</label>
+                <select id="reason" name="reason" onchange="showOtherReasonInput()" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="enlace_roto">Enlace roto</option>
+                    <option value="audio_desincronizado">Audio desincronizado</option>
+                    <option value="mala_calidad">Mala calidad de video</option>
+                    <option value="contenido_incorrecto">Contenido incorrecto</option>
+                    <option value="fallo_chromecast">Fallo en Chromecast</option>
+                    <option value="otro">Otro</option>
+                </select>
+            </div>
+
+            <div id="other-reason-input" class="form-group" style="display:none;">
+                <label for="other-reason">Especifique otro motivo</label>
+                <input type="text" id="other-reason" name="other-reason">
+            </div>
+
+            <div class="form-group">
+                <label for="content-name">Nombre del Contenido</label>
+                <input type="text" id="content-name" name="content-name" required>
+            </div>
+
+            <button type="submit">Enviar Reporte</button>
+        </form>
+
+        <div id="thank-you-message" class="success-message">
+            <img src="https://www.socialcreator.com/srv/imgs/html/266182/mensaje.png" alt="Gracias" width="256" height="256">
+            <p>¡Gracias por enviar tu reporte!</p>
+            <p>
+                ¡Nota importante! Nuestro equipo técnico revisará la información proporcionada y trabajará para solucionar el problema lo antes posible. Tu colaboración nos ayuda a mejorar la experiencia de todos nuestros usuarios.
+                Te notificaremos cualquier actualización o solución relacionada con tu reporte.
+                Si deseas obtener respuestas rápidas a tus preguntas o agilizar el proceso de tu reporte, te invitamos a unirte a nuestro grupo de Telegram, 
+                <a href="https://t.me/Tox_Support" target="_blank">CineTox! Grupo Apoyo Técnico</a>. En este grupo podrás interactuar con nuestro equipo y otros usuarios para obtener asistencia técnica adicional.
+                ¡Gracias por tu paciencia y por ser parte de CineTox!
+            </p>
+            <p>
+                La MEJOR FORMA de agradecer nuestro esfuerzo es COMPARTIENDO la app y que la DISFRUTES.
+            </p>
+            <a href="http://action_share">
+                <img src="https://www.socialcreator.com/srv/imgs/html/266182/compartir.png" alt="Compartir" class="share-icon">
+            </a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script>
+        (function(){
+            emailjs.init("eOIyC0mLYqzguBPqo"); // Reemplaza TU_USER_ID con tu User ID de EmailJS
+        })();
+    </script>
+    <script src="script.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
